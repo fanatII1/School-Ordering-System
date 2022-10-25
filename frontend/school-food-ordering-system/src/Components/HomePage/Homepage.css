@@ -1,0 +1,10 @@
+.Homepage{
+    height: 100%;
+    display: flex;
+    overflow-y: scroll;
+}
+
+#Menu-Section{
+    height: 100%;
+    width: 95%;
+}
