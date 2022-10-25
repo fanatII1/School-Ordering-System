@@ -57,4 +57,83 @@
 /*Food Content Section Styles*/
 #Food-Content-Section{
     height: 100%;
+    margin-top: 2%;
 }
+
+#Food-Content-heading-wrapper{
+    display: flex;
+    align-items: center;
+    height: 5%;
+}
+
+.hungry-img{
+    display: block;
+    height: 100%;
+    object-fit: contain;
+    margin-left: 1%;
+}
+
+
+
+/*Food Filtering Styles*/
+#food-filtering{
+    height: 10%;
+}
+
+#food-filtering-list{
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    height: 100%;
+}
+
+.food-filter-item{
+    position: relative;
+    height: 100%;
+    width: 5%;
+    max-width: 48px;
+    padding: 1%;
+    border-radius: 25px;
+    background: #d19a009e;
+    color: #000;
+    font-weight: 590;
+    text-align: center;
+    transition: .4s;
+    cursor: pointer;
+}
+
+.food-filter-item:hover{
+    opacity: 0.8;
+    transform: scale(1.03);
+}
+
+.food-filter-icon-wrapper{
+    background: #fff;
+    border-radius: 100%;
+    max-width: 32px;
+    max-height: 32px;
+    margin: 0 auto;
+    transition: .4s;
+}
+
+.food-filter-item:hover .food-filter-icon-wrapper{
+    border: 3px solid #000;
+}
+
+.filter-image{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.filter-text{
+    font-size: 0.8rem;
+    font-weight: 595;
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, -50%);
+}
+
