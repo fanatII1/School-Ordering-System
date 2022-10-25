@@ -13,7 +13,7 @@ function NavBarMain() {
                     </li>
                     <li className='nav-item flex-item'>
                         <li className='sub-nav-item'><span class='material-symbols-outlined'>fastfood</span></li>
-                        <li className='sub-nav-item'><span class='material-symbols-outlined'>store</span></li>
+                        <li className='sub-nav-item'><span class='material-symbols-outlined'>storefront</span></li>
                     </li>
                 </ul>
             </div>

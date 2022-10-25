@@ -1,10 +1,60 @@
 .Homepage{
     height: 100%;
     display: flex;
-    overflow-y: scroll;
 }
 
 #Menu-Section{
     height: 100%;
-    width: 95%;
+    width: 95.5%;
+    padding: 0 2%;
+    overflow-y: scroll;
+}
+
+#Introductory-header{
+    display: flex;
+    align-items: center;
+    height: 8%;
+    margin-top: 1%;
+}
+
+.school-name-heading{
+    width: 25%;
+    font-size: 2rem;
+}
+
+#search-cart{
+    width: 75%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#search-form{
+    margin-right: 10%;
+}
+
+#search{
+    padding: 5%;
+    border-radius: 5px;
+    background: #8080802e;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.cart-container{
+    display: flex;
+    align-items: center;
+}
+
+.cart{
+    color: #000 !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+}
+
+
+/*Food Content Section Styles*/
+#Food-Content-Section{
+    height: 100%;
 }
