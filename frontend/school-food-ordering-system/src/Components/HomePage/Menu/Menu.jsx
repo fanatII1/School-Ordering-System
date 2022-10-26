@@ -22,8 +22,14 @@ function Menu({menu}) {
                             <p className="foodDetails-text">{foodDetails}</p>
                             <div className='price-to-cart'>
                                 <h5 className='item-price'>Price: R{price}</h5>
-                                <div className='addToCart'>
-
+                                <div className='Cart-Functionality'>
+                                    <div className="quantity-sizes">
+                                        <button className="decrease"> - </button>
+                                        <span className="quantity"> 0 </span>
+                                        <button className="increase"> + </button>
+                                    </div>
+                                    
+                                    <button className="addToCartBtn">Add To Cart</button>
                                 </div>
                             </div>
                         </div>

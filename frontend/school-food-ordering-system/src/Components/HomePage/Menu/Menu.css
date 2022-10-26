@@ -1,8 +1,9 @@
 #Menu-Items{
     height: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, 19%);
+    grid-template-columns: repeat(auto-fit, minmax(195px, 330px));
     grid-auto-rows: 40%;
+    justify-content: center;
     column-gap: 1%;
     margin-top: 2.5%;
 }
@@ -23,11 +24,46 @@
     height: 100%;
     object-fit: cover;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .foodDetails-text{
-    font-size: 1.02rem;
+    font-size: 0.8rem;
     font-weight: 600;
     color: rgba(148, 147, 147, 0.932);
 }
 
+
+.Cart-Functionality{
+    display: flex;
+    justify-content: space-between;
+}
+
+.quantity-sizes{
+    width: 30%;
+}
+
+.decrease, .increase{
+    width: 30%;
+}
+
+.decrease, .increase, .addToCartBtn{
+    background: #e2c061;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    padding: 0.3%;
+    transition: .4s;
+}
+
+.addToCartBtn{
+    font-size: 0.8rem;
+    padding: 1%;
+}
+
+.decrease:hover, .increase:hover, .addToCartBtn:hover{
+    transform: scale(0.95);
+}
