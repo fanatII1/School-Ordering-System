@@ -1,0 +1,23 @@
+#Menu-Items{
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 20%);
+    grid-auto-rows: 60%;
+}
+
+.menu-item-wrapper{
+    height: 100%;
+    padding: 1%;
+}
+
+.menu-image-wrapper{
+    height: 50%;
+}
+
+.menu-image{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+

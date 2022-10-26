@@ -12,14 +12,14 @@ function NavBarMain() {
                         <img src={SchoolLogo} alt='school-logo' id='school-logo' />
                     </li>
                     <li className='nav-item flex-item'>
-                        <li className='sub-nav-item'><span class='material-symbols-outlined'>fastfood</span></li>
-                        <li className='sub-nav-item'><span class='material-symbols-outlined'>storefront</span></li>
+                        <div className='sub-nav-item'><span className='material-symbols-outlined'>fastfood</span></div>
+                        <div className='sub-nav-item'><span className='material-symbols-outlined'>storefront</span></div>
                     </li>
                 </ul>
             </div>
 
             <div id='logout-wrapper'>
-                <span class='material-symbols-outlined'>logout</span>
+                <span className='material-symbols-outlined'>logout</span>
             </div>
         </nav>
     )
