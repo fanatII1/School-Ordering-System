@@ -15,6 +15,11 @@ function CartModal({cartModal, setCartModal}) {
         setCartModal('closeCartModal')
     }
 
+    const removeItem = (e, food_name) =>{
+        cartItemArr.delete(food_name);
+        setCartItemArr(new Map(cartItemArr))
+    }
+
 
   return (
     <div id={cartModal}>
@@ -40,7 +45,11 @@ function CartModal({cartModal, setCartModal}) {
                                 <p className='foodName'>{foodName}</p>
                                 <p className='foodQuantity'>{foodQuantity}</p>
                                 <p className='Price'>{price}</p>
-                                <div className='Remove'><span className='material-symbols-outlined bin'>delete_sweep</span></div>
+                                <div className='Remove'>
+                                    <span className='material-symbols-outlined bin' onClick={(e, food_name) => removeItem(e, foodName)}>
+                                        delete_sweep
+                                    </span>
+                                </div>
                             </li>
                         )
                     })

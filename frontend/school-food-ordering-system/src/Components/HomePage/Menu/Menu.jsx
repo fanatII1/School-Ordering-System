@@ -21,7 +21,6 @@ function Menu({menu}) {
     const addToCart = (e, key, foodName, price) =>{
         e.preventDefault();
         let foodQuantity =  quantity.current[key].textContent;
-        console.log(price)
         setCartItemArr(new Map(cartItemArr.set(foodName, {foodQuantity, price})))
     }
 
