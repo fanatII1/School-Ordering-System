@@ -24,10 +24,6 @@ function Menu({menu}) {
         setCartItemArr(new Map(cartItemArr.set(foodName, foodQuantity)))
     }
 
-    // useEffect(()=>{
-    //     console.log(cartItemArr)
-    // },[cartItemArr])
-
   return (
     <section id='Menu-Items'>
         {
