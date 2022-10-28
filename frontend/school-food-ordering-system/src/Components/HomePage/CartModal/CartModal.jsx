@@ -23,6 +23,11 @@ function CartModal({cartModal, setCartModal}) {
                 <span className='material-symbols-outlined close' onClick={hideCartModal}>do_not_disturb_on</span>
             </div>
             <ul id='cartList'>
+                <li className='list-description'>
+                    <h6 className='cart-food-item'>Food Name:</h6>
+                    <h6 className='cart-quantity-heading'>Quantity</h6>
+                    <h6 className='price-heading'>Price</h6>
+                </li>
                 {
                     cartItems.map((item, key) =>{
                         //the cartItems array has an inner array which we destructure
@@ -32,12 +37,10 @@ function CartModal({cartModal, setCartModal}) {
                         let {foodQuantity, price} = foodInfo;
                         return(
                             <li className='cart-list-item' key={key}>
-                                <p className='cart-item-name'>
-                                    {foodName} 
-                                    <span className="quantity-cart">{foodQuantity}</span>
-                                    <span className="quantity-cart">{price}</span>
-                                </p>
-                                <div className='remove'><span className="material-symbols-outlined bin">delete_sweep</span></div>
+                                <p className='foodName'>{foodName}</p>
+                                <p className='foodQuantity'>{foodQuantity}</p>
+                                <p className='Price'>{price}</p>
+                                <div className='Remove'><span className='material-symbols-outlined bin'>delete_sweep</span></div>
                             </li>
                         )
                     })

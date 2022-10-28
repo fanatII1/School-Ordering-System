@@ -44,21 +44,44 @@
     padding: 0 3%;
 }
 
+.list-description{
+    display: flex;
+}
+
 .cart-list-item{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
-.cart-item-name{
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
+.cart-food-item{
+    width: 70%;
+    text-align: left;
 }
 
-.remove{
+.cart-quantity-heading, .price-heading{
+    width: 15%;
+    text-align: left;
+}
+
+.foodName{
+    width: 70%;
+    text-align: left;
+}
+
+.foodQuantity, .Price, .Remove{
+    width: 10%;
+}
+
+.foodQuantity, .Price{
+    font-size: 0.85rem;
+    margin: 1.5px;
+    background: #c7ab5a;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.Remove{
     display: flex;
-    align-items: center;
+    justify-content: flex-end;
 }
 
 .bin, .bin:hover{
