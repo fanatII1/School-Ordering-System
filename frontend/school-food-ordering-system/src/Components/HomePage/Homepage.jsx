@@ -7,7 +7,7 @@ import Drink from './HomePageImages/drink.png'
 import Snacks from './HomePageImages/snack.png'
 import Menu from './Menu/Menu'
 import { client } from '../../Client'
-// const imageresponse =  await client.getEntries({content_type: 'foods'});
+import CartModal from './CartModal/CartModal'
 
 const filterItems = [
   {image: HungryImage, text: 'All'},
@@ -18,6 +18,7 @@ const filterItems = [
 
 function Homepage() {
   const [menu, setMenu] = useState(null)
+  const [cartModal, setCartModal] = useState('closeCartModal')
 
   //after initial render, we fetch menu data from contentful.
   //client.getEntries() returns a promise
@@ -27,7 +28,6 @@ function Homepage() {
       const menuData = response.items;
       // map()--returns an array with ONLY fields objects[has data(menu) to be rendered] 
       const menuFields = menuData.map((menu)=> menu.fields);
-      console.log(menuFields)
       setMenu(menuFields)
     }
 
@@ -35,12 +35,18 @@ function Homepage() {
   }, []);
 
 
+  //onClick reveals cartModal by changing className modal state
+  const showCartModal = () =>{
+    setCartModal('showCartModal')
+  }
+
+
   if(menu === null){
     return <></>
   }
   else{
     return (
-      <main className='Homepage Menu-Order'>
+      <main className='Homepage'>
         <NavBarMain/>
   
         <article id='Menu-Section'>
@@ -54,7 +60,8 @@ function Homepage() {
               <input type='search' name='search' id='search' placeholder='Search Foods...'/>
             </form>
             <div className='cart-container'>
-              <span className='material-symbols-outlined cart'>shopping_cart</span>
+              <span className='material-symbols-outlined cart' onClick={showCartModal}>shopping_cart</span>
+              <CartModal cartModal={cartModal} setCartModal={setCartModal}/>
             </div>
            </div>
           </header>
@@ -88,7 +95,6 @@ function Homepage() {
             <Menu menu={menu}/>
           </section>
         </article>
-  
       </main>
     )
   }
