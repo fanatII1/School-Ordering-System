@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useEffect } from 'react'
+import React, { useRef, useContext } from 'react'
 import { Context } from '../../../App';
 import './Menu.css'
 
@@ -18,10 +18,11 @@ function Menu({menu}) {
         quantity.current[key].textContent--;
     }
 
-    const addToCart = (e, key, foodName) =>{
+    const addToCart = (e, key, foodName, price) =>{
         e.preventDefault();
         let foodQuantity =  quantity.current[key].textContent;
-        setCartItemArr(new Map(cartItemArr.set(foodName, foodQuantity)))
+        console.log(price)
+        setCartItemArr(new Map(cartItemArr.set(foodName, {foodQuantity, price})))
     }
 
   return (
@@ -53,7 +54,7 @@ function Menu({menu}) {
                                         <button className='increase' onClick={(e) => increase(e, key)}> + </button>
                                     </div>
                                     
-                                    <button className='addToCartBtn' onClick={(e)=> addToCart(e, key, foodName)}>Add To Cart</button>
+                                    <button className='addToCartBtn' onClick={(e)=> addToCart(e, key, foodName, price)}>Add To Cart</button>
                                 </div>
                             </div>
                         </div>
