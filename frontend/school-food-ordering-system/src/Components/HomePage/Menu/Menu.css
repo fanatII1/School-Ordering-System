@@ -32,6 +32,12 @@
     color: rgba(148, 147, 147, 0.932);
 }
 
+.menu-item-description{
+    height: 50%;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+}
 
 .Cart-Functionality{
     display: flex;

@@ -1,6 +1,7 @@
 .Homepage{
     height: 100%;
     display: flex;
+    overflow: hidden;
 }
 
 #Menu-Section{

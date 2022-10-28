@@ -1,11 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useRef, useContext, useEffect } from 'react'
+import { Context } from '../../../App';
 import './Menu.css'
-
 
 //Component that has all the food items(menu) the school offers
 function Menu({menu}) {
+    const context = useContext(Context)
+    let [cartItemArr, setCartItemArr] = context;
     const quantity = useRef([]);
-    const [cartItemArr, setCartItemArr] = useState(new Map())
 
     const increase = (e, key) =>{
         e.preventDefault();
@@ -22,6 +23,10 @@ function Menu({menu}) {
         let foodQuantity =  quantity.current[key].textContent;
         setCartItemArr(new Map(cartItemArr.set(foodName, foodQuantity)))
     }
+
+    // useEffect(()=>{
+    //     console.log(cartItemArr)
+    // },[cartItemArr])
 
   return (
     <section id='Menu-Items'>

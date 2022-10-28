@@ -20,7 +20,7 @@
     max-width: 335px;
     text-align: center;
     background: rgb(255, 255, 255);
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 }
 
 .close-wrapper{
