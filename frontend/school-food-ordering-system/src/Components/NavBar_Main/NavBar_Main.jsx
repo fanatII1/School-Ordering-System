@@ -1,9 +1,11 @@
 import React from 'react'
 import './NavBar_Main.css'
 import SchoolLogo from '../HomePage/HomePageImages/suiderlig-logo.png'
-
+import {useAuth0} from '@auth0/auth0-react'
 
 function NavBarMain() {
+    const {loginWithRedirect, logout, isAuthenticated} = useAuth0();
+
   return (
         <nav id='nav-wrapper'>
             <div className='nav-sub-wrapper'>
@@ -19,7 +21,12 @@ function NavBarMain() {
             </div>
 
             <div id='logout-wrapper'>
-                <span className='material-symbols-outlined'>logout</span>
+                {isAuthenticated ?
+                    <span className='material-symbols-outlined' onClick={() => logout({returnTo: window.location.origin})}>
+                        logout
+                    </span> :
+                    <span className='material-symbols-outlined' onClick={() => loginWithRedirect()}>login</span>
+                }
             </div>
         </nav>
     )
