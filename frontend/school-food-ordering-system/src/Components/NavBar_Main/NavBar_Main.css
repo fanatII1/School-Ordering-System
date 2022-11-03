@@ -66,3 +66,33 @@
     text-align: center;
     cursor: pointer;
 }
+
+#tooltip{
+    display: none;
+    transition: .4s;
+}
+
+#logout-wrapper:hover #tooltip{
+    display: block;
+    position: absolute;
+    left: 110%;
+    color: #fff;
+    background: black;
+    font-size: 0.8rem;
+    padding: 0 10%;
+    height: 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: opacIn .5s;
+}
+
+@keyframes opacIn {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}

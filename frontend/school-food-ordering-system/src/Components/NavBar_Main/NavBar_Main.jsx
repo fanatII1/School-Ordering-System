@@ -21,6 +21,9 @@ function NavBarMain() {
             </div>
 
             <div id='logout-wrapper'>
+                <div id='tooltip'>
+                    {isAuthenticated ? 'logout' : 'login'}
+                </div>
                 {isAuthenticated ?
                     <span className='material-symbols-outlined' onClick={() => logout({returnTo: window.location.origin})}>
                         logout
