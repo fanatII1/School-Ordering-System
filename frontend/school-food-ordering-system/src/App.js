@@ -7,6 +7,7 @@ import { createContext, useState } from 'react';
 export const Context = createContext();
 function App() {
   const [cartItemArr, setCartItemArr] = useState(new Map())
+  console.log(process.env.REACT_APP_CLIENT_ID)
 
     return(
       <Context.Provider value={[cartItemArr, setCartItemArr]}>
