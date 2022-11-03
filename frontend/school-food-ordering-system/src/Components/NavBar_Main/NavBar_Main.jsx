@@ -1,11 +1,32 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './NavBar_Main.css'
 import SchoolLogo from '../HomePage/HomePageImages/suiderlig-logo.png'
 import { Link } from 'react-router-dom'
 import {useAuth0} from '@auth0/auth0-react'
 
 function NavBarMain() {
-    const {loginWithRedirect, logout, isAuthenticated} = useAuth0();
+    const {loginWithRedirect, logout, isAuthenticated, getAccessTokenSilently} = useAuth0();
+
+    //request to authorize admins route from api
+    useEffect(()=>{
+        async function authorizeAdmins(){
+            try {
+                const token = await getAccessTokenSilently();
+                console.log(token)
+                const response = await fetch('/AdminDashboard',{
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                const responseData = response.json();
+                console.log(responseData)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        
+        authorizeAdmins();
+    }, [isAuthenticated, getAccessTokenSilently])
 
   return (
         <nav id='nav-wrapper'>
