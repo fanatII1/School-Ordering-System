@@ -1,6 +1,7 @@
 import React from 'react'
 import './NavBar_Main.css'
 import SchoolLogo from '../HomePage/HomePageImages/suiderlig-logo.png'
+import { Link } from 'react-router-dom'
 import {useAuth0} from '@auth0/auth0-react'
 
 function NavBarMain() {
@@ -15,7 +16,9 @@ function NavBarMain() {
                     </li>
                     <li className='nav-item flex-item'>
                         <div className='sub-nav-item'><span className='material-symbols-outlined'>fastfood</span></div>
-                        <div className='sub-nav-item'><span className='material-symbols-outlined'>storefront</span></div>
+                        <div className='sub-nav-item'>
+                            <Link to='/AdminDashboard'><span className='material-symbols-outlined'>storefront</span></Link>
+                        </div>
                     </li>
                 </ul>
             </div>
