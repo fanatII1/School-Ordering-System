@@ -46,7 +46,9 @@ function NavBarMain() {
                         <img src={SchoolLogo} alt='school-logo' id='school-logo' />
                     </li>
                     <li className='nav-item flex-item'>
-                        <div className='sub-nav-item'><span className='material-symbols-outlined'>fastfood</span></div>
+                        <div className='sub-nav-item'>
+                            <Link to='/'><span className='material-symbols-outlined'>fastfood</span></Link>
+                        </div>
                         <div className='sub-nav-item'>
                             <Link to='/Profile'><span className='material-symbols-outlined'>person</span></Link>
                         </div>
