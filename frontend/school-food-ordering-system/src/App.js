@@ -7,16 +7,20 @@ import { createContext, useState } from 'react';
 
 export const Context = createContext();
 function App() {
-  const [cartItemArr, setCartItemArr] = useState(new Map())
+  const [cartItemArr, setCartItemArr] = useState(new Map());
+  const [adminAccess, setAdminAccess] = useState(null)
 
     return(
-      <Context.Provider value={[cartItemArr, setCartItemArr]}>
+      <Context.Provider value={[cartItemArr, setCartItemArr, adminAccess, setAdminAccess]}>
         <>
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Homepage/>}/> 
             <Route path='/About' element={<AboutPage/>}/>
-            <Route path='/AdminDashboard' element={<AdminDashboard/>}/>
+            {
+              adminAccess === null ? <></> :
+              <Route path='/AdminDashboard' element={<AdminDashboard/>}/>
+            }
           </Routes>
         </BrowserRouter>
         </>

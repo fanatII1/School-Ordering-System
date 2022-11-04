@@ -41,7 +41,6 @@ const checkPermissions = authz(['read:admin'], {
 
 //handle requests to validate user token, check roles/permission(scopes)
 app.get('/AdminDashboard', authorizationAccessToken, checkPermissions, (req, res)=>{
-    console.log('hi')
     res.send({adminMsg: 'admin'})
 })
 

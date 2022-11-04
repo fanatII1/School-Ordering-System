@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
+import { Context } from '../../App'
 import './NavBar_Main.css'
 import SchoolLogo from '../HomePage/HomePageImages/suiderlig-logo.png'
 import { Link } from 'react-router-dom'
@@ -6,26 +7,35 @@ import {useAuth0} from '@auth0/auth0-react'
 
 function NavBarMain() {
     const {loginWithRedirect, logout, isAuthenticated, getAccessTokenSilently} = useAuth0();
+    const context = useContext(Context)
+    let [, , adminAccess, setAdminAccess] = context;
 
     //request to authorize admins route from api
     useEffect(()=>{
         async function authorizeAdmins(){
             try {
                 const token = await getAccessTokenSilently();
-                console.log(token)
                 const response = await fetch('/AdminDashboard',{
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
-                const responseData = response.json();
-                console.log(responseData)
+                const responseData = await response.json();
+                //if response indicates admin, set admin value to state
+                if(responseData.adminMsg === 'admin'){
+                    setAdminAccess('admin')
+                }
+                else{
+                    return
+                }
+
             } catch (err) {
                 console.log(err)
             }
         }
         
         authorizeAdmins();
+        // eslint-disable-next-line
     }, [isAuthenticated, getAccessTokenSilently])
 
   return (
@@ -38,7 +48,10 @@ function NavBarMain() {
                     <li className='nav-item flex-item'>
                         <div className='sub-nav-item'><span className='material-symbols-outlined'>fastfood</span></div>
                         <div className='sub-nav-item'>
-                            <Link to='/AdminDashboard'><span className='material-symbols-outlined'>storefront</span></Link>
+                            {
+                                adminAccess === null ? <></> :
+                                <Link to='/AdminDashboard'><span className='material-symbols-outlined'>storefront</span></Link>
+                            }
                         </div>
                     </li>
                 </ul>
