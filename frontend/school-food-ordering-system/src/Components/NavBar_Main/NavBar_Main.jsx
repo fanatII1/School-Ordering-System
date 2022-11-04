@@ -48,9 +48,11 @@ function NavBarMain() {
                     <li className='nav-item flex-item'>
                         <div className='sub-nav-item'><span className='material-symbols-outlined'>fastfood</span></div>
                         <div className='sub-nav-item'>
-                            {
-                                adminAccess === null ? <></> :
-                                <Link to='/AdminDashboard'><span className='material-symbols-outlined'>storefront</span></Link>
+                            <Link to='/Profile'><span className='material-symbols-outlined'>person</span></Link>
+                        </div>
+                        <div className='sub-nav-item'>
+                            { adminAccess === null ? <></> :
+                              <Link to='/AdminDashboard'><span className='material-symbols-outlined'>storefront</span></Link>
                             }
                         </div>
                     </li>
