@@ -20,6 +20,12 @@ function CartModal({cartModal, setCartModal}) {
         setCartItemArr(new Map(cartItemArr))
     }
 
+    //onClick orders the food, stores in storage to remember ordered food
+    const Order = (e) =>{
+        e.preventDefault();
+        localStorage.setItem('Ordered Items', JSON.stringify(cartItems))
+    }
+
 
   return (
     <div id={cartModal}>
@@ -55,6 +61,8 @@ function CartModal({cartModal, setCartModal}) {
                     })
                 }
             </ul>
+
+            <button className='order-btn' onClick={Order}>Order</button>
         </aside>
     </div>
   )
