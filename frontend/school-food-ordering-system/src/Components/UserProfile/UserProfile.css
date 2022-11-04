@@ -1,0 +1,46 @@
+#UserProfile{
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+#user-content{
+    height: 100%;
+    width: 95.5%;
+    padding: 0 2%;
+    overflow-y: scroll;
+}
+
+.user-info{
+    height: 20%;
+    display: flex;
+}
+
+.user-image-wrapper{
+    width: 20%;
+    max-width: 120px;
+    height: 100%;
+    text-align: center;
+}
+
+#user-image{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.name-email{
+    width: 80%;
+    height: 100%;
+}
+
+.user-name-heading, .user-email-heading{
+    font-weight: 900;
+}
+
+.user-name, .user-email{
+    display: inline;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
