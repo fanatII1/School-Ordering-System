@@ -9,7 +9,7 @@ function UserProfile() {
     if(isLoading) return <p>Loading...</p>
 
     const {name, picture, email}  = user;
-    //we fetch the 
+    //we fetch the food from local storage
     let orderedItems = JSON.parse(localStorage.getItem('Ordered Items'));
     console.log(orderedItems)
     if(isAuthenticated){

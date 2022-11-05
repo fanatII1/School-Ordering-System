@@ -21,9 +21,20 @@ function CartModal({cartModal, setCartModal}) {
     }
 
     //onClick orders the food, stores in storage to remember ordered food
+    //clear the map array after order
     const Order = (e) =>{
         e.preventDefault();
-        localStorage.setItem('Ordered Items', JSON.stringify(cartItems))
+        
+        // setCartItemArr(new Map())
+        const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+        const date = new Date();
+        const today = weekDays[date.getDay()];
+        localStorage.setItem(today, JSON.stringify(cartItems))
+        //after 24h(86400000 ms) we clear the storage
+        setTimeout(()=>{
+            localStorage.clear()
+        }, 86400000)
+        console.log(today)
     }
 
 
