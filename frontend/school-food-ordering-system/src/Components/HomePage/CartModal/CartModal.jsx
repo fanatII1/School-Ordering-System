@@ -10,7 +10,6 @@ function CartModal({cartModal, setCartModal}) {
     
     //copy key/value pairs of new Map() object thats accessed from context state
     let cartItems = [...cartItemArr];
-    console.log(cartItems)
     
     const hideCartModal = () =>{
         setCartModal('closeCartModal')
@@ -35,7 +34,6 @@ function CartModal({cartModal, setCartModal}) {
         setTimeout(()=>{
             localStorage.clear()
         }, 36000000)
-        console.log(today)
     }
 
 

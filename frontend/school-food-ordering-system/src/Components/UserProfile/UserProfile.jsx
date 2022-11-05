@@ -13,7 +13,7 @@ function UserProfile() {
     const date = new Date();
     const today = weekDays[date.getDay()];
     let orderedItems = JSON.parse(localStorage.getItem(today));
-    console.log(orderedItems)
+    
     if(isAuthenticated){
         return (
             <main id='UserProfile'>
