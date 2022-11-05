@@ -5,12 +5,14 @@ import {useAuth0} from '@auth0/auth0-react'
 
 function UserProfile() {
     const {user, isAuthenticated, isLoading} = useAuth0();
-
     if(isLoading) return <p>Loading...</p>
 
     const {name, picture, email}  = user;
     //we fetch the food from local storage
-    let orderedItems = JSON.parse(localStorage.getItem('Ordered Items'));
+    const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    const date = new Date();
+    const today = weekDays[date.getDay()];
+    let orderedItems = JSON.parse(localStorage.getItem(today));
     console.log(orderedItems)
     if(isAuthenticated){
         return (

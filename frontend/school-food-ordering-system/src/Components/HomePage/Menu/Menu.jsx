@@ -35,7 +35,8 @@ function Menu({menu}) {
     const addToCart = (e, key, foodName, price) =>{
         e.preventDefault();
         let foodQuantity =  quantity.current[key].textContent;
-        setCartItemArr(new Map(cartItemArr.set(foodName, {foodQuantity, price})))
+        let food_price = foodPrice.current[key];
+        setCartItemArr(new Map(cartItemArr.set(foodName, {foodQuantity, food_price})))
     }
 
   return (
