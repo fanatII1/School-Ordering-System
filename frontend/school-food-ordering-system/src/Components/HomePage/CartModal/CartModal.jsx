@@ -30,10 +30,10 @@ function CartModal({cartModal, setCartModal}) {
         const date = new Date();
         const today = weekDays[date.getDay()];
         localStorage.setItem(today, JSON.stringify(cartItems))
-        //after 24h(86400000 ms) we clear the storage
+        //after 10h(36000000 ms) we clear the storage
         setTimeout(()=>{
             localStorage.clear()
-        }, 86400000)
+        }, 36000000)
         console.log(today)
     }
 

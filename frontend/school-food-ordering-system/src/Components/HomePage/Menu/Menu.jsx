@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react'
+import React, { useRef, useContext, useEffect, useState } from 'react'
 import { Context } from '../../../App';
 import './Menu.css'
 
@@ -7,11 +7,25 @@ function Menu({menu}) {
     const context = useContext(Context)
     let [cartItemArr, setCartItemArr] = context;
     const quantity = useRef([]);
+    const foodPrice = useRef([]);
+    // eslint-disable-next-line 
+    const [reRender, setReRender] = useState(1)
 
-    const increase = (e, key) =>{
+    
+    const increase = (e, key, price) =>{
         e.preventDefault();
+        let food_price = Number(foodPrice.current[key]);
+        foodPrice.current[key] = food_price + Number(price);
         quantity.current[key].textContent++;
+
+        /*following reRender state causes component to re-render,
+          allowing foodPrice ref() state to show updated values*/
+        setReRender((oldValue) => oldValue + 1)
     }
+
+    useEffect(()=>{
+
+    })
 
     const decrease = (e, key) =>{
         e.preventDefault();
@@ -29,8 +43,9 @@ function Menu({menu}) {
         {
             menu.map((menuItem, key)=>{
                 let {foodImage, foodName, price, foodDetails} = menuItem;
-
                 let image = typeof foodImage.fields === 'undefined' ? '' : foodImage.fields.file.url
+                foodPrice.current.push(price)
+
                 return(
                     <div className='menu-item-wrapper' key={key}>
                         <div className='menu-image-wrapper'>
@@ -43,14 +58,14 @@ function Menu({menu}) {
                             <hr width='30px'/>
                             <p className='foodDetails-text'>{foodDetails}</p>
                             <div className='price-to-cart'>
-                                <h5 className='item-price'>Price: R{price}</h5>
+                                <h5 className='item-price'>Price: R{foodPrice.current[key]}</h5>
                                 <div className='Cart-Functionality'>
                                     <div className='quantity-sizes'>
                                         <button className='decrease'  onClick={(e) => decrease(e, key)}> - </button>
                                         <span className='quantity' ref={(element)=> quantity.current.push(element)}>
-                                            {typeof quantity.current[0] === 'undefined' ? 0 : quantity.current[key].textContent}
+                                            {typeof quantity.current[0] === 'undefined' ? 1 : quantity.current[key].textContent}
                                         </span>
-                                        <button className='increase' onClick={(e) => increase(e, key)}> + </button>
+                                        <button className='increase' onClick={(e) => increase(e, key, price)}> + </button>
                                     </div>
                                     
                                     <button className='addToCartBtn' onClick={(e)=> addToCart(e, key, foodName, price)}>Add To Cart</button>
