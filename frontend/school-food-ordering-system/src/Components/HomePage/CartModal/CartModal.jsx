@@ -57,12 +57,13 @@ function CartModal({cartModal, setCartModal}) {
                         //first array item is a string of the food name, 2nd array item is an object(foodInfo)
                         //thus we further destructure the object(foodInfo) in the inner array
                         let [foodName, foodInfo] = item;
-                        let {foodQuantity, price} = foodInfo;
+                        let {foodQuantity, food_price} = foodInfo;
+                        
                         return(
                             <li className='cart-list-item' key={key}>
                                 <p className='foodName'>{foodName}</p>
                                 <p className='foodQuantity'>{foodQuantity}</p>
-                                <p className='Price'>{price}</p>
+                                <p className='Price'>{food_price}</p>
                                 <div className='Remove'>
                                     <span className='material-symbols-outlined bin' onClick={(e, food_name) => removeItem(e, foodName)}>
                                         delete_sweep
