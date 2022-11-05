@@ -45,12 +45,12 @@ function UserProfile() {
                             orderedItems === null ? <></> :
                             orderedItems.map((item)=>{
                                 let [foodName, foodInfoDetails] = item;
-                                let {foodQuantity, price} = foodInfoDetails;
+                                let {foodQuantity, food_price} = foodInfoDetails;
                                 return(
                                     <div className='ordered-item-wrapper'>
                                         <p className='ordered-item item-name'>{foodName}</p>
                                         <p className='ordered-item item-quantity'>{foodQuantity}</p>
-                                        <p className='ordered-item item-price'>R{price}</p>
+                                        <p className='ordered-item item-price'>R{food_price}</p>
                                     </div>
                                 )
                             })

@@ -32,7 +32,7 @@ function Menu({menu}) {
         quantity.current[key].textContent--;
     }
 
-    const addToCart = (e, key, foodName, price) =>{
+    const addToCart = (e, key, foodName) =>{
         e.preventDefault();
         let foodQuantity =  quantity.current[key].textContent;
         let food_price = foodPrice.current[key];
