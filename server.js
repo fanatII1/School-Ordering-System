@@ -44,9 +44,10 @@ app.get('/AdminDashboard', authorizationAccessToken, checkPermissions, (req, res
 })
 
 //capture payment by checking payment token
-app.post('/Payment', authorizationAccessToken, (req, res)=>[
-    console.log(req.body)
-])
+app.post('/Payment', (req, res)=>{
+    console.log(req.headers)
+    res.send({msg: 'Payment Successfully made'})
+})
 
 //Server listens on PORT 3001 or environment variable PORT
 app.listen(PORT, ()=>{
