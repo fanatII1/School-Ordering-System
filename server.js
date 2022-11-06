@@ -38,12 +38,15 @@ const checkPermissions = authz(['read:admin'], {
     customUserKey: 'auth'
 })
 
-
 //handle requests to validate user token, check roles/permission(scopes)
 app.get('/AdminDashboard', authorizationAccessToken, checkPermissions, (req, res)=>{
     res.send({adminMsg: 'admin'})
 })
 
+//capture payment by checking payment token
+app.post('/Payment', authorizationAccessToken, (req, res)=>[
+    console.log(req.body)
+])
 
 //Server listens on PORT 3001 or environment variable PORT
 app.listen(PORT, ()=>{
