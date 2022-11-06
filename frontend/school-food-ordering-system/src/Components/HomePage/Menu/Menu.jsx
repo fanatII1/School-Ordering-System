@@ -18,8 +18,7 @@ function Menu({menu}) {
         foodPrice.current[key] = food_price + Number(price);
         quantity.current[key].textContent++;
 
-        /*following reRender state causes component to re-render,
-          allowing foodPrice ref() state to show updated values*/
+        //setReRender state causes component to re-render, to allow foodPrice ref() to show update
         setReRender((oldValue) => oldValue + 1)
     }
 
@@ -27,9 +26,12 @@ function Menu({menu}) {
 
     })
 
-    const decrease = (e, key) =>{
+    const decrease = (e, key, price) =>{
         e.preventDefault();
+        let food_price = Number(foodPrice.current[key]);
+        foodPrice.current[key] = food_price - Number(price);
         quantity.current[key].textContent--;
+        setReRender((oldValue) => oldValue + 1)
     }
 
     const addToCart = (e, key, foodName) =>{
@@ -62,7 +64,7 @@ function Menu({menu}) {
                                 <h5 className='item-price'>Price: R{foodPrice.current[key]}</h5>
                                 <div className='Cart-Functionality'>
                                     <div className='quantity-sizes'>
-                                        <button className='decrease'  onClick={(e) => decrease(e, key)}> - </button>
+                                        <button className='decrease'  onClick={(e) => decrease(e, key, price)}> - </button>
                                         <span className='quantity' ref={(element)=> quantity.current.push(element)}>
                                             {typeof quantity.current[0] === 'undefined' ? 1 : quantity.current[key].textContent}
                                         </span>
