@@ -20,6 +20,7 @@
     "express-jwt": "^7.7.7",
     "express-jwt-authz": "^2.4.1",
     "jwks-rsa": "^3.0.0",
+    "node-fetch": "^3.2.10",
     "nodemon": "^2.0.20"
   }
 }

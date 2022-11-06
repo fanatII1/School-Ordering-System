@@ -32,8 +32,12 @@ function CartModal({cartModal, setCartModal}) {
                   alert("error occured: " + errorMessage);
                 } else {
                     //send token to server
-                    let response = fetch('/Payment', {
+                    console.log(result.id)
+                    let response = await fetch('/Payment', {
                         method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
                         body: JSON.stringify({token: result.id})
                     })
 

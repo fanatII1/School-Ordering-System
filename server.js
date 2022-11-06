@@ -44,8 +44,24 @@ app.get('/AdminDashboard', authorizationAccessToken, checkPermissions, (req, res
 })
 
 //capture payment by checking payment token
-app.post('/Payment', (req, res)=>{
-    console.log(req.headers)
+app.post('/Payment', async (req, res)=>{
+    let paymentToken = req.body.token;
+    console.log(paymentToken)
+    await fetch('https://online.yoco.com/v1/charges/',{
+        method: 'POST',
+        headers: {
+            'X-Auth-Secret-Key': 'sk_test_960bfde0VBrLlpK098e4ffeb53e1',
+            "Content-Type": "application/json", 
+        },
+        body:  JSON.stringify({
+            token: paymentToken,
+            amountInCents: 2799,
+            currency: 'ZAR',
+        })
+    })
+    .then((res)=> res.json())
+    .then((response)=> console.log('rrrrrrrrr:', response))
+    .catch((error)=> console.log(`the error: ${error}`))
     res.send({msg: 'Payment Successfully made'})
 })
 
