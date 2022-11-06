@@ -3,17 +3,16 @@ import { useContext } from 'react'
 import { Context } from '../../../App'
 import './CartModal.css'
 
-//cartModal that shows items in the cart
+var yoco = new window.YocoSDK({
+    publicKey: 'pk_test_ed3c54a6gOol69qa7f45',
+});
+
 function CartModal({cartModal, setCartModal}) {
     const context = useContext(Context)
     let [cartItemArr, setCartItemArr] = context;
+    let cartItems = [...cartItemArr]; //key/value pairs of new Map() object  from context state
     
-    //copy key/value pairs of new Map() object thats accessed from context state
-    let cartItems = [...cartItemArr];
-    
-    const hideCartModal = () =>{
-        setCartModal('closeCartModal')
-    }
+    const hideCartModal = () => setCartModal('closeCartModal')
 
     const removeItem = (e, food_name) =>{
         cartItemArr.delete(food_name);
@@ -21,21 +20,33 @@ function CartModal({cartModal, setCartModal}) {
     }
 
     //onClick orders the food, stores in storage to remember ordered food
-    //clear the map array after order
+    //after 10h(36000000 ms) we clear the storage
     const Order = (e) =>{
         e.preventDefault();
-        
-        // setCartItemArr(new Map())
         const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
         const date = new Date();
         const today = weekDays[date.getDay()];
         localStorage.setItem(today, JSON.stringify(cartItems))
-        //after 10h(36000000 ms) we clear the storage
         setTimeout(()=>{
             localStorage.clear()
         }, 36000000)
-    }
 
+        yoco.showPopup({
+            name: 'Suiderlig Foods',
+            description: 'Order from Suiderlig HS',
+            currency: 'ZAR',
+            amountInCents: 2799,
+            callback: function (result) {
+                // function returns a token thats sent to server can use to capture a payment
+                if (result.error) {
+                  const errorMessage = result.error.message;
+                  alert("error occured: " + errorMessage);
+                } else {
+                  alert("card successfully tokenised: " + result.id);
+                }
+            }        
+        })
+    }
 
   return (
     <div id={cartModal}>
