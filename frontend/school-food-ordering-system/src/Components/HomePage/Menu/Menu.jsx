@@ -1,13 +1,12 @@
-import React, { useRef, useContext, useEffect, useState } from 'react'
+import React, { useRef, useContext, useState } from 'react'
 import { Context } from '../../../App';
 import './Menu.css'
 
 //Component that has all the food items(menu) the school offers
 function Menu({menu}) {
     const context = useContext(Context)
-    let [cartItemArr, setCartItemArr] = context;
+    let [cartItemArr, setCartItemArr, , , foodPrice] = context;
     const quantity = useRef([]);
-    const foodPrice = useRef([]);
     // eslint-disable-next-line 
     const [reRender, setReRender] = useState(1)
 
@@ -17,14 +16,9 @@ function Menu({menu}) {
         let food_price = Number(foodPrice.current[key]);
         foodPrice.current[key] = food_price + Number(price);
         quantity.current[key].textContent++;
-
         //setReRender state causes component to re-render, to allow foodPrice ref() to show update
         setReRender((oldValue) => oldValue + 1)
     }
-
-    useEffect(()=>{
-
-    })
 
     const decrease = (e, key, price) =>{
         e.preventDefault();

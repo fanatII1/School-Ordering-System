@@ -4,15 +4,16 @@ import Homepage from './Components/HomePage/Homepage';
 import AboutPage from './Components/AboutPage/AboutPage';
 import UserProfile from './Components/UserProfile/UserProfile';
 import AdminDashboard from './Components/AdminDashboard/AdminDashboard';
-import { createContext, useState } from 'react';
+import { createContext, useState, useRef } from 'react';
 
 export const Context = createContext();
 function App() {
   const [cartItemArr, setCartItemArr] = useState(new Map());
-  const [adminAccess, setAdminAccess] = useState(null)
+  const [adminAccess, setAdminAccess] = useState(null);
+  const foodPrice = useRef([]);
 
     return(
-      <Context.Provider value={[cartItemArr, setCartItemArr, adminAccess, setAdminAccess]}>
+      <Context.Provider value={[cartItemArr, setCartItemArr, adminAccess, setAdminAccess, foodPrice]}>
         <>
         <BrowserRouter>
           <Routes>

@@ -1,13 +1,29 @@
-import React from 'react'
-import { useContext } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useContext, useRef } from 'react'
 import { Context } from '../../../App'
 import { yoco } from '../../../YocoSDK'
 import './CartModal.css'
 
 function CartModal({cartModal, setCartModal}) {
     const context = useContext(Context)
-    let [cartItemArr, setCartItemArr] = context;
-    let cartItems = [...cartItemArr]; //key/value pairs of new Map() object  from context state
+    let [cartItemArr, setCartItemArr, , , foodPrice] = context;
+    //key/value pairs of new Map() object  from context state
+    let cartItems = [...cartItemArr];
+    const totalPrice = useRef([]);
+    const [totalDisplay, setTotalDisplay] = useState(0)
+
+    /*when cartItemArr changes, calculate new total.
+      used cartItemArr cause when it changes, indicates that there's new item arr,
+      therefore, need to calculate a new total
+    */
+    useEffect(()=>{
+        let priceItemsTotal = foodPrice.current.filter((priceItem)=> typeof priceItem === 'number' );
+        let sum = 0;
+        priceItemsTotal.forEach((price)=>{
+           sum += price
+        })
+        setTotalDisplay(sum)
+    }, [cartItemArr, foodPrice])
     
     const hideCartModal = () => setCartModal('closeCartModal')
 
@@ -42,8 +58,7 @@ function CartModal({cartModal, setCartModal}) {
                     })
 
                     let responseData = await response.json();
-                    console.log(responseData)
-                //   alert("card successfully tokenised: " + result.id);
+                    alert(responseData.msg)
                 }
             }        
         })
@@ -81,7 +96,7 @@ function CartModal({cartModal, setCartModal}) {
                             <li className='cart-list-item' key={key}>
                                 <p className='foodName'>{foodName}</p>
                                 <p className='foodQuantity'>{foodQuantity}</p>
-                                <p className='Price'>{food_price}</p>
+                                <p className='Price'  ref={(element)=> totalPrice.current.push(element)}>{food_price}</p>
                                 <div className='Remove'>
                                     <span className='material-symbols-outlined bin' onClick={(e, food_name) => removeItem(e, foodName)}>
                                         delete_sweep
@@ -93,7 +108,7 @@ function CartModal({cartModal, setCartModal}) {
                 }
             </ul>
 
-            <button className='order-btn' onClick={Order}>Order</button>
+            <button className='order-btn' onClick={Order}>Order(R{totalDisplay})</button>
         </aside>
     </div>
   )

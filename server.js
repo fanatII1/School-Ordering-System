@@ -47,6 +47,7 @@ app.get('/AdminDashboard', authorizationAccessToken, checkPermissions, (req, res
 app.post('/Payment', async (req, res)=>{
     let paymentToken = req.body.token;
     console.log(paymentToken)
+    //request to capture payments on yoco
     await fetch('https://online.yoco.com/v1/charges/',{
         method: 'POST',
         headers: {
@@ -59,10 +60,16 @@ app.post('/Payment', async (req, res)=>{
             currency: 'ZAR',
         })
     })
-    .then((res)=> res.json())
-    .then((response)=> console.log('rrrrrrrrr:', response))
+    .then((res)=>{
+        if(res.status === 201){
+            return res.json()
+        }
+        else{
+            res.status(500).send({msg: 'Payment not a success'})
+        }
+    })
+    .then((response)=> res.send({msg: 'Payment was a success'}))
     .catch((error)=> console.log(`the error: ${error}`))
-    res.send({msg: 'Payment Successfully made'})
 })
 
 //Server listens on PORT 3001 or environment variable PORT
