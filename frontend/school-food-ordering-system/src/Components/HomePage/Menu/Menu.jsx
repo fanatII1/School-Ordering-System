@@ -28,6 +28,10 @@ function Menu({menu}) {
         setReRender((oldValue) => oldValue + 1)
     }
 
+    //when adding to cart, we get the quantity and price of certain food
+    //we then change the prices variable type to a number/interger 
+    //we will use this interger in the cart modal to calculate the total of only items added to the foodPrice array
+    //items added to foodPrice array are those with a interger type variable
     const addToCart = (e, key, foodName) =>{
         e.preventDefault();
         let foodQuantity =  quantity.current[key].textContent;
