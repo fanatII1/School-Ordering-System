@@ -2,20 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { useContext, useRef } from 'react'
 import { Context } from '../../../App'
 import { yoco } from '../../../YocoSDK'
+import {useAuth0} from '@auth0/auth0-react'
 import './CartModal.css'
 
 function CartModal({cartModal, setCartModal}) {
     const context = useContext(Context)
     let [cartItemArr, setCartItemArr, , , foodPrice] = context;
-    //key/value pairs of new Map() object  from context state
-    let cartItems = [...cartItemArr];
+    let cartItems = [...cartItemArr]; //key/value pairs of new Map() object  from context state
     const totalPrice = useRef([]);
     const [totalDisplay, setTotalDisplay] = useState(0)
+    const {user, isAuthenticated, isLoading} = useAuth0();
+    // if(isAuthenticated){
+    //     console.log('mxm')
+    // }
 
-    /*when cartItemArr changes, calculate new total.
-      used cartItemArr cause when it changes, indicates that there's new item arr,
-      therefore, need to calculate a new total
-    */
+    // when cartItemArr changes, calculate new total. when cartItemArr changes, indicates that there's new item in arr,
     useEffect(()=>{
         let priceItemsTotal = foodPrice.current.filter((priceItem)=> typeof priceItem === 'number' );
         let sum = 0;
@@ -23,7 +24,6 @@ function CartModal({cartModal, setCartModal}) {
            sum += price
         })
         setTotalDisplay(sum)
-        // console.log('hi', cartItemArr, totalDisplay, sum, priceItemsTotal, foodPrice)
     }, [cartItemArr, foodPrice])
     
     const hideCartModal = () => setCartModal('closeCartModal')
@@ -49,7 +49,6 @@ function CartModal({cartModal, setCartModal}) {
                   alert("error occured: " + errorMessage);
                 } else {
                     //send token to server
-                    console.log(result.id)
                     let response = await fetch('/Payment', {
                         method: 'POST',
                         headers: {
@@ -60,6 +59,14 @@ function CartModal({cartModal, setCartModal}) {
 
                     let responseData = await response.json();
                     alert(responseData.msg)
+
+
+                    //if payment was a success, we store user name and their order in localStorage
+                    if(responseData.msg === 'Payment was a success' && isAuthenticated){
+                        localStorage.setItem('Paid Students', JSON.stringify(
+                            [{studentName: user.name, order: cartItems}]
+                        ))
+                    }
                 }
             }        
         })

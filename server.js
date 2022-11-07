@@ -62,7 +62,6 @@ app.post('/Payment', async (req, res)=>{
     })
     .then((res)=> res.json() )
     .then((response)=>{
-        console.log(response)
         if(response.errorType){
             console.log(response)
             res.status(401).send({error: 'Oops, seems that there was a problem in the payment'})
