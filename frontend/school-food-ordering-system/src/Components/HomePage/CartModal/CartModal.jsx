@@ -23,6 +23,7 @@ function CartModal({cartModal, setCartModal}) {
            sum += price
         })
         setTotalDisplay(sum)
+        // console.log('hi', cartItemArr, totalDisplay, sum, priceItemsTotal, foodPrice)
     }, [cartItemArr, foodPrice])
     
     const hideCartModal = () => setCartModal('closeCartModal')
@@ -40,7 +41,7 @@ function CartModal({cartModal, setCartModal}) {
             name: 'Suiderlig Foods',
             description: 'Order from Suiderlig HS',
             currency: 'ZAR',
-            amountInCents: 2799,
+            amountInCents: totalDisplay * 100,
             callback: async function (result) {
                 // function returns a token thats sent to server can use to capture a payment
                 if (result.error) {
@@ -108,7 +109,7 @@ function CartModal({cartModal, setCartModal}) {
                 }
             </ul>
 
-            <button className='order-btn' onClick={Order}>Order(R{totalDisplay})</button>
+            <button className='order-btn' onClick={Order}>Order - Total (R{totalDisplay})</button>
         </aside>
     </div>
   )

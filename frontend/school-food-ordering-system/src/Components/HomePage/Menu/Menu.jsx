@@ -32,6 +32,7 @@ function Menu({menu}) {
         e.preventDefault();
         let foodQuantity =  quantity.current[key].textContent;
         let food_price = foodPrice.current[key];
+        foodPrice.current[key] = Number(food_price);
         setCartItemArr(new Map(cartItemArr.set(foodName, {foodQuantity, food_price})))
     }
 
