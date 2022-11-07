@@ -63,9 +63,22 @@ function CartModal({cartModal, setCartModal}) {
 
                     //if payment was a success, we store user name and their order in localStorage
                     if(responseData.msg === 'Payment was a success' && isAuthenticated){
-                        localStorage.setItem('Paid Students', JSON.stringify(
-                            [{studentName: user.name, order: cartItems}]
-                        ))
+                        let paidStudents = JSON.parse(localStorage.getItem('Paid Students'));
+                        if(paidStudents === null) {
+                            localStorage.setItem('Paid Students', JSON.stringify([{studentName: user.name, studentOrder: cartItems}]))
+                        } 
+                        else {
+                            if(typeof paidStudents[0] === 'undefined'){
+                                localStorage.setItem('Paid Students', JSON.stringify([{studentName: user.name, studentOrder: cartItems}]))
+                            } 
+                            else{
+                                //if there are users, and a person placed an order, need to push them into paidStudents array
+                                //also, there might be multiple orders, therefore, no need to store one unique user
+                                paidStudents.push({studentName: user.name, studentOrder: cartItems})
+                                console.log(paidStudents)
+                                localStorage.setItem('Paid Students', JSON.stringify(paidStudents))
+                            }
+                        }
                     }
                 }
             }        
