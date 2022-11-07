@@ -45,8 +45,8 @@ app.get('/AdminDashboard', authorizationAccessToken, checkPermissions, (req, res
 
 //capture payment by checking payment token
 app.post('/Payment', async (req, res)=>{
-    let paymentToken = req.body.token;
-    console.log(paymentToken)
+    let {token, totalAmountInCents} = req.body;
+    
     //request to capture payments on yoco
     await fetch('https://online.yoco.com/v1/charges/',{
         method: 'POST',
@@ -55,20 +55,15 @@ app.post('/Payment', async (req, res)=>{
             "Content-Type": "application/json", 
         },
         body:  JSON.stringify({
-            token: paymentToken,
-            amountInCents: 2799,
+            token: token,
+            amountInCents: totalAmountInCents,
             currency: 'ZAR',
         })
     })
-    .then((res)=>{
-        if(res.status === 201){
-            return res.json()
-        }
-        else{
-            res.status(500).send({msg: 'Payment not a success'})
-        }
+    .then((res)=> res.json() )
+    .then((response)=>{
+        console.log(response)
     })
-    .then((response)=> res.send({msg: 'Payment was a success'}))
     .catch((error)=> console.log(`the error: ${error}`))
 })
 

@@ -55,7 +55,7 @@ function CartModal({cartModal, setCartModal}) {
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({token: result.id})
+                        body: JSON.stringify({token: result.id, totalAmountInCents: totalDisplay * 100 })
                     })
 
                     let responseData = await response.json();
