@@ -61,9 +61,7 @@ app.post('/Payment', async (req, res)=>{
         })
     })
     .then((res)=> res.json() )
-    .then((response)=>{
-        console.log(response)
-    })
+    .then((response)=> res.send({msg: 'Payment was a success'}))
     .catch((error)=> console.log(`the error: ${error}`))
 })
 
