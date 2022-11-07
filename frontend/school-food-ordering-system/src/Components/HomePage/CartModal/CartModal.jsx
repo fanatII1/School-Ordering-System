@@ -76,7 +76,7 @@ function CartModal({cartModal, setCartModal}) {
     <div id={cartModal}>
         <aside id='cart-aside-modal'>
             <div className='close-wrapper'>
-                <span className='material-symbols-outlined close' onClick={hideCartModal}>do_not_disturb_on</span>
+                <span className='material-symbols-outlined close' onClick={hideCartModal}>close</span>
             </div>
             <ul id='cartList'>
                 <li className='list-description'>
