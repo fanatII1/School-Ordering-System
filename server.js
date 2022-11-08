@@ -8,6 +8,7 @@ const authz = require('express-jwt-authz');
 const mongoose = require('mongoose')
 require('dotenv').config()
 const saveOrderedStudent = require('./Controller/OrderedStudentsSave');
+const findOrderedStudents = require('./Controller/FindOrderedStudents');
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -81,9 +82,13 @@ app.post('/Payment', async (req, res)=>{
 
 
 //request to save Paid/Ordered Students to the database
-//first we verify the token
 app.post('/PaidStudents', (req, res)=>{
     saveOrderedStudent.saveStudentOrder(req, res)
+})
+
+/* Request to fetch all paid students from the database */
+app.get('/PlacedOrders', (req, res)=>{
+    findOrderedStudents.findOrderedStudents(req, res)
 })
 
 //Server listens on PORT 3001 or environment variable PORT
