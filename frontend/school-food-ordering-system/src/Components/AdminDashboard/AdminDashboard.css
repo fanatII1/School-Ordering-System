@@ -1,0 +1,40 @@
+#Admin-mainContent{
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+#AdminMainSection{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-image: url('./AdminDashboardImages/order.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+
+.ordered-users-content{
+    height: 100%;
+    padding: 0 2%;
+    overflow-y: auto;
+}
+
+.overlay{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.336);
+}
+
+.ordered-heading{
+    color: #fff;
+    z-index: 2;
+}
+
+#paidStudents{
+    height: 100%;
+}

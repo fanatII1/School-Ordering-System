@@ -1,23 +1,64 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import NavBarMain from '../NavBar_Main/NavBar_Main';
+import './AdminDashboard.css';
 
 //component that will render all paid users of the system
 //also will render deleted users of the system(after user pays)
 function AdminDashboard() {
-  const[paidStudents, setPaidStudents] = useState();
+  const [paidStudents, setPaidStudents] = useState();
 
   //after initial render of component, fetch all paid users from database
-  useEffect(()=>{
-    async function fetchPaidStudents(){
+  useEffect(() => {
+    async function fetchPaidStudents() {
       let response = await fetch('/PlacedOrders');
       let paidStudents = await response.json();
-      setPaidStudents(paidStudents)
+      setPaidStudents(paidStudents);
+      console.log(paidStudents);
     }
     fetchPaidStudents();
-  }, [])
+  }, []);
 
-  return (
-    <div>AdminDashboard</div>
-  )
+  //if paidStudents has no data('undefined'), we render nothing
+  if (typeof paidStudents === 'undefined') {
+    return <>...</>;
+  } else {
+    return (
+      <main id='Admin-mainContent'>
+        <NavBarMain />
+
+        <article id='AdminMainSection'>
+          <div className='ordered-users-content overlay'>
+            <h1 className='ordered-heading'>Ordered Users</h1>
+            <section id='paidStudents'>
+              {paidStudents.map((student) => {
+                let { studentName, studentOrder } = student;
+
+                return (
+                  <div className='student'>
+                    <h3 className='student-name'>
+                      Student Name: <span className='name'>{studentName}</span>
+                    </h3>
+                    <ul className='items-ordered-list'>
+                      {studentOrder.map((item) => {
+                        let [foodItem, foodDetails] = item;
+                        let { foodQuantity, food_price } = foodDetails;
+
+                        return (
+                          <li className='order-item'>
+                            Food Item: {foodItem} - {foodQuantity} <span className='price'>Price: {food_price}</span>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                );
+              })}
+            </section>
+          </div>
+        </article>
+      </main>
+    );
+  }
 }
 
-export default AdminDashboard
+export default AdminDashboard;

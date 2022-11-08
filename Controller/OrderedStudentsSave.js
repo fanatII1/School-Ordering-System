@@ -1,10 +1,10 @@
 const OrderedStudentsModel = require('../Models/OrderedStudents');
 
 exports.saveStudentOrder = async function(req, res){
-    let {name, order} = req.body;
+    let {studentName, studentOrder} = req.body;
     let studentDetails = new OrderedStudentsModel({
-        studentName: name,
-        studentOrder: order
+        studentName: studentName,
+        studentOrder: studentOrder
     });
 
     await studentDetails.save()

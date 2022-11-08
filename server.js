@@ -83,6 +83,7 @@ app.post('/Payment', async (req, res)=>{
 
 //request to save Paid/Ordered Students to the database
 app.post('/PaidStudents', (req, res)=>{
+    console.log(req.body)
     saveOrderedStudent.saveStudentOrder(req, res)
 })
 

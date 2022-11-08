@@ -34,12 +34,10 @@ function Homepage() {
     fetchMenuData()
   }, []);
 
-
   //onClick reveals cartModal by changing className modal state
   const showCartModal = () =>{
     setCartModal('showCartModal')
   }
-
 
   if(menu === null){
     return <></>
