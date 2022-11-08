@@ -1,15 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
 import NavBarMain from '../NavBar_Main/NavBar_Main';
 import { Context } from '../../App';
-import {useAuth0} from '@auth0/auth0-react'
 import './AdminDashboard.css';
 
 //component that will render all paid users of the system
 //also will render deleted users of the system(after user pays)
 function AdminDashboard() {
-  const { isAuthenticated, getAccessTokenSilently} = useAuth0();
   const context = useContext(Context)
-  let [, , adminAccess, setAdminAccess] = context;
   const [paidStudents, setPaidStudents] = useState();
 
   //after initial render of component, fetch all paid users from database
@@ -50,7 +47,7 @@ function AdminDashboard() {
 
                         return (
                           <li className='order-item'>
-                            Food Item: {foodItem} - {foodQuantity} 
+                            <span className='foodItem'>Food Item</span>: {foodItem} - <span className='quantity'>({foodQuantity})</span>
                             <span className='price'>Price: R{food_price}</span>
                           </li>
                         );

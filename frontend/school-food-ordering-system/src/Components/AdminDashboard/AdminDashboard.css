@@ -48,17 +48,24 @@
 }
 
 .student{
-    background: #1c1c1c6b;
+    background: #fff;
     padding: 1%;
     border-radius: 15px;
     border: 1px solid #fff;
-    color: #ffff;
-    box-shadow: 0 0 10px 3px #fefefe;
+    color: #000;
 }
 
-.ordered-items-heading, .price{
-    color: #00cbc1;
-    font-weight: lighter;
+.order-item, .quantity{
+    font-weight: 550;
+}
+
+.ordered-items-heading{
+    color: rgba(68, 67, 67, 0.61);
+}
+
+.price, .foodItem{
+    color: #373b73;
+    font-weight: 600;
 }
 
 .items-ordered-list{
