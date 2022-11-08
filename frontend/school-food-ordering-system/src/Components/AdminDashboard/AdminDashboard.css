@@ -41,7 +41,7 @@
     height: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(195px, 330px));
-    grid-auto-rows: 40%;
+    grid-auto-rows: 25%;
     justify-content: center;
     gap: 1%;
     margin-top: 1%;
@@ -55,8 +55,12 @@
     color: #000;
 }
 
-.order-item, .quantity{
+.order-item{
     font-weight: 550;
+}
+
+.quantity{
+    font-weight: 600;
 }
 
 .ordered-items-heading{
