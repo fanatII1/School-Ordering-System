@@ -33,8 +33,40 @@
 .ordered-heading{
     color: #fff;
     z-index: 2;
+    text-align: center;
+    font-size: 2rem;
 }
 
 #paidStudents{
     height: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(195px, 330px));
+    grid-auto-rows: 40%;
+    justify-content: center;
+    gap: 1%;
+    margin-top: 1%;
+}
+
+.student{
+    background: #1c1c1c6b;
+    padding: 1%;
+    border-radius: 15px;
+    border: 1px solid #fff;
+    color: #ffff;
+    box-shadow: 0 0 10px 3px #fefefe;
+}
+
+.ordered-items-heading, .price{
+    color: #00cbc1;
+    font-weight: lighter;
+}
+
+.items-ordered-list{
+    list-style: none;
+    position: relative;
+}
+
+.price{
+    position: absolute;
+    right: 0;
 }

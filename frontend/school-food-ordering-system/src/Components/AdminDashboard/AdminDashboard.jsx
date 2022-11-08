@@ -35,9 +35,9 @@ function AdminDashboard() {
 
                 return (
                   <div className='student'>
-                    <h3 className='student-name'>
-                      Student Name: <span className='name'>{studentName}</span>
-                    </h3>
+                    <h4 className='student-name'> Student Name: <span className='name'>{studentName}</span> </h4>
+                    <h4 className='ordered-items-heading'>Ordered Items</h4>
+
                     <ul className='items-ordered-list'>
                       {studentOrder.map((item) => {
                         let [foodItem, foodDetails] = item;
@@ -45,7 +45,8 @@ function AdminDashboard() {
 
                         return (
                           <li className='order-item'>
-                            Food Item: {foodItem} - {foodQuantity} <span className='price'>Price: {food_price}</span>
+                            Food Item: {foodItem} - {foodQuantity} 
+                            <span className='price'>Price: R{food_price}</span>
                           </li>
                         );
                       })}
