@@ -5,11 +5,8 @@ import './Menu.css'
 //Component that has all the food items(menu) the school offers
 function Menu({menu}) {
     const context = useContext(Context)
-    let [cartItemArr, setCartItemArr, , , foodPrice] = context;
+    let [cartItemArr, setCartItemArr, , , foodPrice, , setReRender] = context;
     const quantity = useRef([]);
-    // eslint-disable-next-line 
-    const [reRender, setReRender] = useState(1)
-
     
     const increase = (e, key, price) =>{
         e.preventDefault();

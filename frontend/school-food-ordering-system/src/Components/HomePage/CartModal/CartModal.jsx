@@ -7,16 +7,13 @@ import './CartModal.css'
 
 function CartModal({cartModal, setCartModal}) {
     const context = useContext(Context)
-    let [cartItemArr, setCartItemArr, , , foodPrice] = context;
+    let [cartItemArr, setCartItemArr, , , foodPrice, reRender] = context;
     let cartItems = [...cartItemArr]; //key/value pairs of new Map() object  from context state
     const totalPrice = useRef([]);
-    const [totalDisplay, setTotalDisplay] = useState(0)
-    const {user, isAuthenticated, isLoading} = useAuth0();
-    // if(isAuthenticated){
-    //     console.log('mxm')
-    // }
-
-    // when cartItemArr changes, calculate new total. when cartItemArr changes, indicates that there's new item in arr,
+    const [totalDisplay, setTotalDisplay] = useState()
+    const {user, isAuthenticated} = useAuth0();
+    
+    //when component re-renders we calculate the total
     useEffect(()=>{
         let priceItemsTotal = foodPrice.current.filter((priceItem)=> typeof priceItem === 'number' );
         let sum = 0;
@@ -24,12 +21,13 @@ function CartModal({cartModal, setCartModal}) {
            sum += price
         })
         setTotalDisplay(sum)
-    }, [cartItemArr, foodPrice])
+    }, [reRender, foodPrice])
     
     const hideCartModal = () => setCartModal('closeCartModal')
 
-    const removeItem = (e, food_name) =>{
+    const removeItem = (e, food_name, key, food_price) =>{
         cartItemArr.delete(food_name);
+        setTotalDisplay((oldPrice)=> oldPrice - food_price)
         setCartItemArr(new Map(cartItemArr))
     }
 
@@ -60,26 +58,19 @@ function CartModal({cartModal, setCartModal}) {
                     let responseData = await response.json();
                     alert(responseData.msg)
 
-
-                    //if payment was a success, we store user name and their order in localStorage
                     if(responseData.msg === 'Payment was a success' && isAuthenticated){
-                        let paidStudents = JSON.parse(localStorage.getItem('Paid Students'));
-                        if(paidStudents === null) {
-                            localStorage.setItem('Paid Students', JSON.stringify([{studentName: user.name, studentOrder: cartItems}]))
-                        } 
-                        else {
-                            if(typeof paidStudents[0] === 'undefined'){
-                                localStorage.setItem('Paid Students', JSON.stringify([{studentName: user.name, studentOrder: cartItems}]))
-                            } 
-                            else{
-                                //if there are users, and a person placed an order, need to push them into paidStudents array
-                                //also, there might be multiple orders, therefore, no need to store one unique user
-                                paidStudents.push({studentName: user.name, studentOrder: cartItems})
-                                console.log(paidStudents)
-                                localStorage.setItem('Paid Students', JSON.stringify(paidStudents))
-                            }
-                        }
+                        console.log(cartItems)
+                        await fetch('/PaidStudents', {
+                            method: 'POST',
+                            headers:{
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({studentName: user.name, studentOrder: cartItems})
+                        })
+                        .then((res) => console.log(res))
+                        .catch((err) => console.log(err))
                     }
+                    
                 }
             }        
         })
@@ -119,7 +110,7 @@ function CartModal({cartModal, setCartModal}) {
                                 <p className='foodQuantity'>{foodQuantity}</p>
                                 <p className='Price'  ref={(element)=> totalPrice.current.push(element)}>{food_price}</p>
                                 <div className='Remove'>
-                                    <span className='material-symbols-outlined bin' onClick={(e, food_name) => removeItem(e, foodName)}>
+                                    <span className='material-symbols-outlined bin' onClick={(e) => removeItem(e, foodName, key, food_price)}>
                                         delete_sweep
                                     </span>
                                 </div>

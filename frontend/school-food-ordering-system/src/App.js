@@ -11,9 +11,10 @@ function App() {
   const [cartItemArr, setCartItemArr] = useState(new Map());
   const [adminAccess, setAdminAccess] = useState(null);
   const foodPrice = useRef([]);
+  const [reRender, setReRender] = useState(1)
 
     return(
-      <Context.Provider value={[cartItemArr, setCartItemArr, adminAccess, setAdminAccess, foodPrice]}>
+      <Context.Provider value={[cartItemArr, setCartItemArr, adminAccess, setAdminAccess, foodPrice, reRender, setReRender]}>
         <>
         <BrowserRouter>
           <Routes>

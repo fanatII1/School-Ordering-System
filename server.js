@@ -5,12 +5,19 @@ const cors = require('cors');
 const { expressjwt: jwt } = require("express-jwt");
 const jwksRsa = require('jwks-rsa');
 const authz = require('express-jwt-authz');
+const mongoose = require('mongoose')
 require('dotenv').config()
+const saveOrderedStudent = require('./Controller/OrderedStudentsSave');
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 const PORT = process.env.PORT || 3001;
+
+let uri = 'mongodb+srv://George:GeorginhoSchool7@school-food-ordering-cl.h3slfex.mongodb.net/?retryWrites=true&w=majority';
+mongoose.connect(uri)
+.then(() => console.log('connected'))
+.catch(() => console.log('not connected'))
 
 //middlware to validate JWT
 const domain = process.env.AUTH0_DOMAIN;
@@ -63,7 +70,6 @@ app.post('/Payment', async (req, res)=>{
     .then((res)=> res.json() )
     .then((response)=>{
         if(response.errorType){
-            console.log(response)
             res.status(401).send({error: 'Oops, seems that there was a problem in the payment'})
         }
         else{
@@ -71,6 +77,13 @@ app.post('/Payment', async (req, res)=>{
         }
     })
     .catch((error)=> console.log(`the error: ${error}`))
+})
+
+
+//request to save Paid/Ordered Students to the database
+//first we verify the token
+app.post('/PaidStudents', (req, res)=>{
+    saveOrderedStudent.saveStudentOrder(req, res)
 })
 
 //Server listens on PORT 3001 or environment variable PORT
