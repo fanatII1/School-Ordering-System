@@ -48,10 +48,6 @@
     text-align: right;
 }
 
-.item-name, .item-price{
-    font-weight: 600;
-}
-
 .item-name-heading, .item-price-heading{
     font-weight: 400;
 }

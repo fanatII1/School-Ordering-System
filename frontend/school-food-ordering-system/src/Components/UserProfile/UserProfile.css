@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2&display=swap');
 #UserProfile{
     height: 100%;
     display: flex;
     overflow: hidden;
+    background: #1D1C1C;
 }
 
 #user-content{
@@ -38,12 +40,15 @@
 }
 
 .user-name-heading, .user-email-heading{
-    font-weight: 900;
+    font-size: 600;
+    font-size: 1.4rem;
+    height: 50%;
+    color: #fff;
+    font-family: 'Baloo Da 2', cursive;
 }
 
 .user-name, .user-email{
     display: inline;
-    font-size: 0.7rem;
     font-weight: 500;
 }
 
@@ -65,27 +70,34 @@
     border-radius: 10px;
 }
 
+#ordered-items-heading{
+    color: #41c485;
+}
+
 .items-legend{
     display: flex;
     justify-content: space-between;
     padding: 0 1%;
-    color: #000;
+    color: #fff;
 }
 
 .ordered-item-wrapper{
     display: flex;
     justify-content: space-between;
     padding: 0 1%;
-    margin: 1% 0;
-    background: #d19a009e;
+    margin: 2% 0;
     color: #fff;
-    border-radius: 7px;
     cursor: pointer;
-    transition: .4s
+    transition: .4s;
+    border-bottom: 1px solid #41c485;
 }
 
 .ordered-item-wrapper:hover{
     transform: scale(0.99);
+}
+
+.item-price{
+    font-size: 1.05rem;
 }
 
 .ordered-item, .item-heading{

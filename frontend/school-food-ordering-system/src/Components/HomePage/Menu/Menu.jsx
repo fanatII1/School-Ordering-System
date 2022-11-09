@@ -53,7 +53,7 @@ function Menu({menu}) {
 
                         <div className='menu-item-description'>
                             <h4 className='item-name-heading'>
-                                <span className='item-name'>Name:</span> {foodName}
+                                <span className='item-name'>{foodName}</span>
                             </h4>
                             <h4 className='Food-Details'>Food Details</h4>
                             <p className='foodDetails-text'>{foodDetails}</p>
