@@ -6,6 +6,7 @@ import './AdminDashboard.css';
 //component that will render all paid users of the system
 function AdminDashboard() {
   const [paidStudents, setPaidStudents] = useState();
+  const [flip, setFlip] = useState('student')
 
   //after initial render of component, fetch all paid users from database
   useEffect(() => {
@@ -16,6 +17,17 @@ function AdminDashboard() {
     }
     fetchPaidStudents();
   }, []);
+
+  const flipElement = () =>{
+    if(flip === 'student'){
+      console.log(flip)
+      setFlip('student-flip')
+    }
+    else{
+      console.log(flip)
+      setFlip('student')
+    }
+  }
 
   //if paidStudents has no data('undefined'), we render nothing
   if (typeof paidStudents === 'undefined') {
@@ -37,23 +49,29 @@ function AdminDashboard() {
                 let { studentName, studentOrder } = student;
 
                 return (
-                  <div className='student'>
-                    <h4 className='student-name'> Student Name: <span className='name'>{studentName}</span> </h4>
-                    <h4 className='ordered-items-heading'>Ordered Items</h4>
+                  <div className={flip} onClick={flipElement}>
+                   {
+                    (flip === 'student') ? (
+                      <h4 className='student-name'> Student Name: <span className='name'>{studentName}</span> </h4>
+                    ): (
+                      <>
+                      <h4 className='ordered-items-heading'>Ordered Items</h4>
 
-                    <ul className='items-ordered-list'>
-                      {studentOrder.map((item) => {
-                        let [foodItem, foodDetails] = item;
-                        let { foodQuantity, food_price } = foodDetails;
-
-                        return (
-                          <li className='order-item'>
-                            <span className='foodItem'>Food Item</span>: {foodItem} - <span className='quantity'>({foodQuantity})</span>
-                            <span className='price'>Price: R{food_price}</span>
-                          </li>
-                        );
-                      })}
-                    </ul>
+                      <ul className='items-ordered-list'>
+                        {studentOrder.map((item) => {
+                          let [foodItem, foodDetails] = item;
+                          let { foodQuantity, food_price } = foodDetails;
+  
+                          return (
+                            <li className='order-item'>
+                              {foodItem} - ({foodQuantity}) - R{food_price}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                      </>
+                    )
+                   }
                   </div>
                 );
               })}

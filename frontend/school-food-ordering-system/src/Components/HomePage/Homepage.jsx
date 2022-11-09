@@ -11,9 +11,9 @@ import CartModal from './CartModal/CartModal'
 
 const filterItems = [
   {image: HungryImage, text: 'All'},
-  {image: Food, text: 'Food'},
-  {image: Drink, text: 'Drinks'},
-  {image: Snacks, text: 'Snacks'},
+  {image: Food, text: 'food'},
+  {image: Drink, text: 'drink'},
+  {image: Snacks, text: 'snack'},
 ]
 
 function Homepage() {
@@ -28,6 +28,7 @@ function Homepage() {
       const menuData = response.items;
       // map()--returns an array with ONLY fields objects[has data(menu) to be rendered] 
       const menuFields = menuData.map((menu)=> menu.fields);
+      localStorage.setItem('menu', JSON.stringify(menuFields))
       setMenu(menuFields)
     }
 
@@ -37,6 +38,13 @@ function Homepage() {
   //onClick reveals cartModal by changing className modal state
   const showCartModal = () =>{
     setCartModal('showCartModal')
+  }
+
+  //from the menu thats stored in the storage, we return items that match a condition
+  const filterMenu = (itemType) =>{
+    let menuStorage = JSON.parse(localStorage.getItem('menu'));
+    let filterMenuItems = menuStorage.filter((item) => item.foodType === itemType);
+    setMenu(filterMenuItems)
   }
 
   if(menu === null){
@@ -49,8 +57,8 @@ function Homepage() {
   
         <article id='Menu-Section'>
           <header id='Introductory-header'>
-          <div class="glitch-wrapper">
-            <h1 class="glitch" data-glitch="Suiderlig H.S Foods">Suiderlig H.S Foods</h1>
+          <div className='glitch-wrapper'>
+            <h1 className='glitch' data-glitch='Suiderlig H.S Foods'>Suiderlig H.S Foods</h1>
           </div>
   
            <div id='search-cart'>
@@ -76,8 +84,9 @@ function Homepage() {
               <ul id='food-filtering-list'>
                 {
                   filterItems.map((item, key)=>{
+                    let {text} = item;
                     return(
-                      <li className='food-filter-item' key={key}>
+                      <li className='food-filter-item' key={key} onClick={() => filterMenu(text)}>
                       <div className='food-filter-icon-wrapper'>
                         <img src={item.image} alt='hungry' className='filter-image' />
                       </div>
