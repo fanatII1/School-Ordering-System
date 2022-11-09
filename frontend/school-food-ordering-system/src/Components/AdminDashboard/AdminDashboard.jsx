@@ -1,12 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState} from 'react';
 import NavBarMain from '../NavBar_Main/NavBar_Main';
-import { Context } from '../../App';
 import './AdminDashboard.css';
 
 //component that will render all paid users of the system
-//also will render deleted users of the system(after user pays)
 function AdminDashboard() {
-  const context = useContext(Context)
   const [paidStudents, setPaidStudents] = useState();
 
   //after initial render of component, fetch all paid users from database
@@ -15,7 +12,6 @@ function AdminDashboard() {
       let response = await fetch('/PlacedOrders');
       let paidStudents = await response.json();
       setPaidStudents(paidStudents);
-      console.log(paidStudents);
     }
     fetchPaidStudents();
   }, []);
