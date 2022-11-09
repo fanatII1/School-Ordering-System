@@ -52,12 +52,15 @@ function Menu({menu}) {
                         </div>
 
                         <div className='menu-item-description'>
-                            <h4 className='item-name'>Name: {foodName}</h4>
+                            <h4 className='item-name-heading'>
+                                <span className='item-name'>Name:</span> {foodName}
+                            </h4>
                             <h4 className='Food-Details'>Food Details</h4>
-                            <hr width='30px'/>
                             <p className='foodDetails-text'>{foodDetails}</p>
                             <div className='price-to-cart'>
-                                <h5 className='item-price'>Price: R{foodPrice.current[key]}</h5>
+                                <h5 className='item-price-heading'>
+                                    <span className='item-price'>Price:</span> R{foodPrice.current[key]}
+                                </h5>
                                 <div className='Cart-Functionality'>
                                     <div className='quantity-sizes'>
                                         <button className='decrease'  onClick={(e) => decrease(e, key, price)}> - </button>

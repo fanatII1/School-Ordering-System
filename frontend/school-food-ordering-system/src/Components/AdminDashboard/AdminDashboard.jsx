@@ -1,5 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import NavBarMain from '../NavBar_Main/NavBar_Main';
+import OrderImage from './AdminDashboardImages/order.png'
 import './AdminDashboard.css';
 
 //component that will render all paid users of the system
@@ -25,8 +26,12 @@ function AdminDashboard() {
         <NavBarMain />
 
         <article id='AdminMainSection'>
-          <div className='ordered-users-content overlay'>
+            <section id="banner">
+              <img src={OrderImage} alt="" className="order-image" />
+            </section>
+
             <h1 className='ordered-heading'>Ordered Users</h1>
+            
             <section id='paidStudents'>
               {paidStudents.map((student) => {
                 let { studentName, studentOrder } = student;
@@ -53,7 +58,6 @@ function AdminDashboard() {
                 );
               })}
             </section>
-          </div>
         </article>
       </main>
     );

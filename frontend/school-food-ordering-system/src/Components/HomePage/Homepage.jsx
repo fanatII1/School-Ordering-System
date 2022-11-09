@@ -49,9 +49,9 @@ function Homepage() {
   
         <article id='Menu-Section'>
           <header id='Introductory-header'>
-            <h1 className='school-name-heading'>
-              Suiderlig Foods
-            </h1>
+          <div class="glitch-wrapper">
+            <h1 class="glitch" data-glitch="Suiderlig H.S Foods">Suiderlig H.S Foods</h1>
+          </div>
   
            <div id='search-cart'>
             <form id='search-form' autoComplete='off'>

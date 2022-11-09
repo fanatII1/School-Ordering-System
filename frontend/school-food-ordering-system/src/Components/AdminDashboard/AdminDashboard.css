@@ -8,12 +8,20 @@
     position: relative;
     height: 100%;
     width: 100%;
-    background-image: url('./AdminDashboardImages/order.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
 }
 
+#banner{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.order-image{
+    display: block;
+    max-width: 100%;
+    height: 100%;
+}
 
 .ordered-users-content{
     height: 100%;
@@ -33,18 +41,8 @@
     border-radius: 10px;
 }
 
-.overlay{
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.336);
-}
-
 .ordered-heading{
-    color: #fff;
-    z-index: 2;
+    color: #000;
     text-align: center;
     font-size: 2rem;
 }

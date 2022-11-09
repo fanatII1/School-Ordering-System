@@ -38,6 +38,10 @@ function App() {
     // eslint-disable-next-line
   }, [isAuthenticated, getAccessTokenSilently]);
 
+  useEffect(()=>{
+    console.log(adminAccess)
+  }, [adminAccess])
+
   return (
     <Context.Provider value={[cartItemArr, setCartItemArr, adminAccess, setAdminAccess, foodPrice, reRender, setReRender]}>
       <>
