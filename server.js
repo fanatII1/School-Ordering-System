@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 const PORT = process.env.PORT || 3001;
 
+//connect to mongodb
 let uri = 'mongodb+srv://George:GeorginhoSchool7@school-food-ordering-cl.h3slfex.mongodb.net/?retryWrites=true&w=majority';
 mongoose.connect(uri)
 .then(() => console.log('connected'))
@@ -90,6 +91,10 @@ app.post('/PaidStudents', (req, res)=>{
 /* Request to fetch all paid students from the database */
 app.get('/PlacedOrders', (req, res)=>{
     findOrderedStudents.findOrderedStudents(req, res)
+})
+
+app.post('/ProfileOrders', (req, res)=>{
+    console.log(req.body)
 })
 
 //Server listens on PORT 3001 or environment variable PORT
