@@ -14,7 +14,7 @@ function UserProfile() {
         }
         else{        
             async function fetchOrders(){
-                const {name, picture, email}  = user;
+                const {name}  = user;
                 await fetch('/ProfileOrders', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
@@ -26,6 +26,7 @@ function UserProfile() {
             }
             fetchOrders();
         }
+        //eslint-disable-next-line
     }, [isAuthenticated, isLoading])
     
     if(isAuthenticated){

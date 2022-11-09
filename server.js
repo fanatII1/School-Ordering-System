@@ -9,6 +9,7 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 const saveOrderedStudent = require('./Controller/OrderedStudentsSave');
 const findOrderedStudents = require('./Controller/FindOrderedStudents');
+const findSpecificOrder = require('./Controller/StudentSpecificOrder');
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -84,7 +85,6 @@ app.post('/Payment', async (req, res)=>{
 
 //request to save Paid/Ordered Students to the database
 app.post('/PaidStudents', (req, res)=>{
-    console.log(req.body)
     saveOrderedStudent.saveStudentOrder(req, res)
 })
 
@@ -93,8 +93,9 @@ app.get('/PlacedOrders', (req, res)=>{
     findOrderedStudents.findOrderedStudents(req, res)
 })
 
+/*request to find student specific order from db*/
 app.post('/ProfileOrders', (req, res)=>{
-    console.log(req.body)
+    findSpecificOrder.findSpecificOrder(req, res)
 })
 
 //Server listens on PORT 3001 or environment variable PORT
