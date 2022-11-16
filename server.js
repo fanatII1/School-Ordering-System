@@ -98,6 +98,14 @@ app.post('/ProfileOrders', (req, res)=>{
     findSpecificOrder.findSpecificOrder(req, res)
 })
 
+//Serve static files in production
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('frontend/school-food-ordering-system/build'))
+    app.get('*', (req,res)=>{
+      res.sendFile(path.resolve(__dirname, 'frontend/school-food-ordering-system', 'build', 'index.html'))
+    })
+  }
+
 //Server listens on PORT 3001 or environment variable PORT
 app.listen(PORT, ()=>{
     console.log(`listenting on port ${PORT}`)
