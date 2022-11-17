@@ -35,16 +35,38 @@ function Homepage() {
     fetchMenuData()
   }, []);
 
+  //search function
+  const search = (evnt) =>{
+    let targetSearch = evnt.target.value.toLowerCase();
+    let menu = JSON.parse(localStorage.getItem('menu'));
+    return menu.filter((item, idx, array) => {
+      let foodName = item.foodName.toLowerCase().split(' ')[0];
+      if(foodName === targetSearch){
+        setMenu([item])
+        return item
+      }
+      else{
+        return array
+      }
+    })
+  }
+
   //onClick reveals cartModal by changing className modal state
   const showCartModal = () =>{
     setCartModal('showCartModal')
   }
 
   //from the menu thats stored in the storage, we return items that match a condition
-  const filterMenu = (itemType) =>{
+  //if we click the first button(key == 0) set state to the original one(menuStorage)
+  const filterMenu = (itemType, key) =>{
     let menuStorage = JSON.parse(localStorage.getItem('menu'));
-    let filterMenuItems = menuStorage.filter((item) => item.foodType === itemType);
-    setMenu(filterMenuItems)
+    if(key === 0){
+      setMenu(menuStorage)
+    }
+    else{
+      let filterMenuItems = menuStorage.filter((item) => item.foodType === itemType);
+      setMenu(filterMenuItems)
+    }
   }
 
   if(menu === null){
@@ -63,7 +85,7 @@ function Homepage() {
   
            <div id='search-cart'>
             <form id='search-form' autoComplete='off'>
-              <input type='search' name='search' id='search' placeholder='Search Foods...'/>
+              <input type='search' name='search' id='search' placeholder='Search Foods...' onChange={(evnt) => search(evnt)}/>
             </form>
             <div className='cart-container'>
               <span className='material-symbols-outlined cart' onClick={showCartModal}>shopping_cart</span>
@@ -86,7 +108,7 @@ function Homepage() {
                   filterItems.map((item, key)=>{
                     let {text} = item;
                     return(
-                      <li className='food-filter-item' key={key} onClick={() => filterMenu(text)}>
+                      <li className='food-filter-item' key={key} onClick={() => filterMenu(text, key)}>
                       <div className='food-filter-icon-wrapper'>
                         <img src={item.image} alt='hungry' className='filter-image' />
                       </div>
