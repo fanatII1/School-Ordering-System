@@ -8,7 +8,7 @@
     height: 100%;
     width: 95.5%;
     padding: 0 2%;
-    overflow-y: scroll;
+    overflow-y: auto;
     background: #1D1C1C;
 }
 
@@ -45,7 +45,7 @@
     height: 100%;
     display: flex;
     text-align: center;
-    background-color: #222;
+    background-color: #1d1c1c;
  }
  
  .glitch {
@@ -228,3 +228,59 @@
     transform: translate(-50%, -50%);
 }
 
+
+
+/*RESPONSIVE ACTIVITY FOR ALL STYLES IN HOMEPAGE*/
+@media screen and (max-width: 540px) {
+    #Introductory-header{
+        height: 10%;
+    }
+
+    #search-cart{
+        height: 100%;
+        justify-content: space-between;
+    }
+
+    #search-form{
+        height: 65%;
+        width: 70%;
+    }
+
+    #search-form input{
+        height: 100%;
+        display: block;
+        width: 100%;
+    }
+
+    #food-filtering-list{
+        height: 60% !important;
+    }
+
+    .food-filter-item{
+        width: 10% !important;
+    }
+
+    #nav-wrapper{
+        width: 10.5% !important;
+    }
+
+    #Menu-Section{
+        width: 89.5%;
+    }
+
+    #Food-Content-Section{
+        overflow: auto;
+    }
+
+    .glitch {
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 700;
+        /* letter-spacing: 5px; */
+        line-height: 1.2;
+        position: relative;
+        z-index: 1;
+        height: 100%;
+     }
+    
+}
