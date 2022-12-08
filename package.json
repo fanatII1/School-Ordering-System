@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "nodemon": "server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend/school-food-ordering-system && npm run build --prefix frontend/school-food-ordering-system"
+    "nodemon": "server.js"
   },
   "keywords": [],
   "author": "",
