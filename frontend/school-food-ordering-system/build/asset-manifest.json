@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.508188f4.css",
+    "main.js": "/static/js/main.0b94e507.js",
+    "static/media/order.png": "/static/media/order.f89c45ab3e6d9059a0bb.png",
+    "static/media/food.png": "/static/media/food.b14e351a0b617e7eaec0.png",
+    "static/media/hungry-image.png": "/static/media/hungry-image.08cbf5c1e12804d338d0.png",
+    "static/media/suiderlig-logo.png": "/static/media/suiderlig-logo.3ede3e17a823a425ad2f.png",
+    "static/media/snack.png": "/static/media/snack.c72c61c2b257c7d723a6.png",
+    "static/media/drink.png": "/static/media/drink.48323bb064d18de81637.png",
+    "index.html": "/index.html",
+    "main.508188f4.css.map": "/static/css/main.508188f4.css.map",
+    "main.0b94e507.js.map": "/static/js/main.0b94e507.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.508188f4.css",
+    "static/js/main.0b94e507.js"
+  ]
+}
